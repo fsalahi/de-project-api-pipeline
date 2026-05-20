@@ -13,3 +13,7 @@ This simple ETL is straightforward:
 - in load.py we ingest the info into our tables in db
 - main.py is orchestrating this process.
 - in analysis_queries.sql we play around with the data for analysis purposes. However, the first version of this implementation is very basic. Right now the pipeline uses if_exists="replace", meaning every pipeline deletes old data (not a good idea for analysis :D). I correct this in the next commit.
+
+
+Now let's go deeper in the concern we introduced yesterday.
+in load.py, if_exists="" could be: 1- fail: when accidental overwrite is dangrous or if schema control matters, 2- replace, and 3- append: data grows over time, historical analysis is possible, should manage duplicates, new dataframe columns must match existing table structure.
