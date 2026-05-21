@@ -1,4 +1,5 @@
 import pandas as pd
+from datetime import datetime
 
 def transform_data(data):
 
@@ -14,5 +15,6 @@ def transform_data(data):
         })
 
     df = pd.DataFrame(records)
-
+    df["extraction_date"] = datetime.now().date()
+    df["extracted_at"] = datetime.now()
     return df
