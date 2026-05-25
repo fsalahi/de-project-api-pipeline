@@ -1,5 +1,6 @@
 # Let's send request to coingecko with the following parameters
 import requests
+import logging
 
 URL = "https://api.coingecko.com/api/v3/coins/markets"
 
@@ -11,9 +12,17 @@ PARAMS = {
 }
 # then save and return the response
 def extract_crypto_data():
-    response = requests.get(URL, params=PARAMS)
+    try:
+        response = requests.get(URL, params=PARAMS)
 
-    if response.status_code != 200:
-        raise Exception("API request failed")
+        response.raise_for_status()
 
-    return response.json()
+        logging.info("API extraction successful")
+
+        return response.json()
+
+    except requests.exceptions.RequestException as e:
+
+        logging.error(f"API extraction failed: {e}")
+
+        raise
