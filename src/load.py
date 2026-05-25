@@ -22,5 +22,3 @@ def load_data(df):
         if_exists="append",
         index=False
     )
-
-    print("Data loaded successfully")
