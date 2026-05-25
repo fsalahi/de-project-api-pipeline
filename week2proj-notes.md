@@ -2,6 +2,10 @@ Week 2 API PIPELINE PROJ
 
 Mistakes to avoid:
 - Do not forget to freeze the requirements.txt file
+- I spent quite some time debugging why DATABASE_URL is returning postgresql://None:None@None:None/None
+    a useful function for this debug: load_dotenv(find_dotenv())
+- For some reason my terminal's cache was not clearing and it kept looking at the wrong venv
+- deleted venv and created a new one, cleared cache again, reloaded windows, then it worked
 
 
 As a free API I used: https://docs.coingecko.com
@@ -17,3 +21,7 @@ This simple ETL is straightforward:
 
 Now let's go deeper in the concern we introduced yesterday.
 in load.py, if_exists="" could be: 1- fail: when accidental overwrite is dangrous or if schema control matters, 2- replace, and 3- append: data grows over time, historical analysis is possible, should manage duplicates, new dataframe columns must match existing table structure.
+
+Good practices:
+- separating configuration and application logic
+- Never push credentials to GitHub, that's why we added .env1 to .gitignore 
