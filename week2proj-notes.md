@@ -6,6 +6,9 @@ Mistakes to avoid:
     a useful function for this debug: load_dotenv(find_dotenv())
 - For some reason my terminal's cache was not clearing and it kept looking at the wrong venv
 - deleted venv and created a new one, cleared cache again, reloaded windows, then it worked
+- In file analysis_queroes.sql > example 5: check out the original and corrected version of the query.
+because of the nature of the data in our table "ORDER BY extraction_date" is no longer enough, because SQL does not know the order of rows within the same date. therefore, I should order by the full timestamp (date + time).
+
 
 
 As a free API I used: https://docs.coingecko.com
