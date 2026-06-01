@@ -1,6 +1,6 @@
-Week 2 API PIPELINE PROJ
+# Week 2 API PIPELINE PROJ
 
-Mistakes to avoid:
+## Mistakes to avoid:
 - Do not forget to freeze the requirements.txt file
 - I spent quite some time debugging why DATABASE_URL is returning postgresql://None:None@None:None/None
     a useful function for this debug: load_dotenv(find_dotenv())
@@ -11,9 +11,9 @@ because of the nature of the data in our table "ORDER BY extraction_date" is no 
 
 
 
-As a free API I used: https://docs.coingecko.com
+## As a free API I used: https://docs.coingecko.com
 
-This simple ETL is straightforward:
+## This simple ETL is straightforward:
 - in db.py we connect to db
 - in extract.py we send request to our API, an it returns us a json datatype of info
 - in transform.py we convert the info to dataframe (or whatever we need)
@@ -23,8 +23,11 @@ This simple ETL is straightforward:
 
 
 Now let's go deeper in the concern we introduced yesterday.
-in load.py, if_exists="" could be: 1- fail: when accidental overwrite is dangrous or if schema control matters, 2- replace, and 3- append: data grows over time, historical analysis is possible, should manage duplicates, new dataframe columns must match existing table structure.
+in load.py, if_exists="" could be: 
+1. fail: when accidental overwrite is dangrous or if schema control matters, 
+2. replace, and 
+3. append: data grows over time, historical analysis is possible, should manage duplicates, new dataframe columns must match existing table structure.
 
-Good practices:
+## Good practices:
 - separating configuration and application logic
 - Never push credentials to GitHub, that's why we added .env1 to .gitignore 
