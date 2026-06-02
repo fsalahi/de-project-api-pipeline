@@ -23,30 +23,32 @@
 # print(f"Is Venv Active: {is_venv}")
 
 # connecting the entire pipeline
-import logging
-logging.info("Pipeline started")
-
-from extract import extract_crypto_data
-raw_data = extract_crypto_data()
-logging.info("Extraction completed")
-
-from transform import transform_data
-df = transform_data(raw_data)
-logging.info("Transformation completed")
-
-
-from load import load_data
-load_data(df)
-logging.info("Loading completed")
-
-logging.info("Pipeline completed")
-
-
+import logging, sys
 # Logging
 logging.basicConfig(
     filename='logs/pipeline.log',
     level=logging.INFO,
     format='%(asctime)s - %(levelname)s - %(message)s'
 )
-
 logging.info("Pipeline started")
+
+from extract.extractor import extract_crypto_data
+from data.data_source import data_source
+api_url, api_params = data_source()
+raw_data = extract_crypto_data(api_url, api_params)
+logging.info("Extraction completed")
+
+
+from transform.transformer import transform_data
+df = transform_data(raw_data)
+logging.info("Transformation completed")
+
+#sys.exit()
+
+
+from load.loader import load_data
+load_data(df)
+logging.info("Loading completed")
+
+
+logging.info("Pipeline completed")
