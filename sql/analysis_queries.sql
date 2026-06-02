@@ -80,7 +80,7 @@ WITH price_analysis AS (
     SELECT
         symbol,
         extraction_date,
-        extraction_time,
+        extracted_at,
         current_price,
 
         LAG(current_price) OVER (
@@ -90,11 +90,10 @@ WITH price_analysis AS (
 
     FROM crypto_market
 )
-
 SELECT
     symbol,
     extraction_date,
-    extraction_time,
+    extracted_at,
     current_price,
     previous_price,
     current_price - previous_price AS price_difference

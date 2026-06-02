@@ -5,6 +5,19 @@
 ## Pipeline flow: 
 - API → Python → Transformation → PostgreSQL → Analytics Queries# de-project-api-pipeline
 
+## Project Architecture
+API
+ ↓
+Extract
+ ↓
+Validate
+ ↓
+Transform
+ ↓
+Load
+ ↓
+PostgreSQL
+
 ## Project Goal
     - Fetch cryptocurrency market data from a public API.
     - Store:

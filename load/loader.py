@@ -1,5 +1,5 @@
 # let's load transformed dataframe into a postgresql table
-from db import engine
+from data.db_connection import engine
 
 # version 1
 # def load_data(df):
